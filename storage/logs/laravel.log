@@ -379,3 +379,43 @@
 [2025-02-01 08:28:49] local.INFO: select * from "staff" where "id" = ? limit 1  
 [2025-02-01 08:28:50] local.INFO: select * from "sessions" where "user_id" = ? order by "last_activity" desc  
 [2025-02-01 08:28:50] local.INFO: update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2025-02-01 13:29:55] local.INFO: select * from "sessions" where "id" = ? limit 1  
+[2025-02-01 13:29:55] local.INFO: select * from "staff" where "id" = ? limit 1  
+[2025-02-01 13:29:56] local.INFO: select * from "sessions" where "id" = ? limit 1  
+[2025-02-01 13:29:56] local.INFO: insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2025-02-01 13:30:08] local.INFO: select * from "sessions" where "id" = ? limit 1  
+[2025-02-01 13:30:09] local.INFO: select * from "staff" where "id" = ? limit 1  
+[2025-02-01 13:30:09] local.INFO: update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2025-02-01 13:30:17] local.INFO: select * from "sessions" where "id" = ? limit 1  
+[2025-02-01 13:30:17] local.INFO: select * from "staff" where "id" = ? limit 1  
+[2025-02-01 13:30:18] local.INFO: select * from "staff" where "email" = ? limit 1  
+[2025-02-01 13:30:18] local.INFO: select * from "staff" where "email" = ? limit 1  
+[2025-02-01 13:30:19] local.INFO: delete from "sessions" where "id" = ?  
+[2025-02-01 13:30:19] local.INFO: select * from "sessions" where "id" = ? limit 1  
+[2025-02-01 13:30:20] local.INFO: insert into "sessions" ("payload", "last_activity", "user_id", "ip_address", "user_agent", "id") values (?, ?, ?, ?, ?, ?)  
+[2025-02-01 13:30:23] local.INFO: select * from "sessions" where "id" = ? limit 1  
+[2025-02-01 13:30:24] local.INFO: select * from "staff" where "id" = ? limit 1  
+[2025-02-01 13:30:24] local.INFO: select * from "appointments"  
+[2025-02-01 13:30:25] local.INFO: select * from "staff" where exists (select * from "active_users" where "staff"."id" = "active_users"."staff_id" and "last_activity" >= ?)  
+[2025-02-01 13:30:25] local.INFO: update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2025-02-01 13:32:20] local.INFO: select * from "sessions" where "id" = ? limit 1  
+[2025-02-01 13:32:21] local.INFO: select * from "staff" where "specialization_id" is null  
+[2025-02-01 13:32:21] local.INFO: select * from "staff" where "id" = ? limit 1  
+[2025-02-01 13:32:21] local.INFO: update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2025-02-01 13:32:43] local.INFO: select * from "sessions" where "id" = ? limit 1  
+[2025-02-01 13:32:44] local.INFO: select * from "staff" where "id" = ? limit 1  
+[2025-02-01 13:32:44] local.INFO: update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2025-02-01 13:33:33] local.INFO: select * from "sessions" where "id" = ? limit 1  
+[2025-02-01 13:33:34] local.INFO: select * from "staff" where "id" = ? limit 1  
+[2025-02-01 13:33:34] local.INFO: update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2025-02-01 13:33:58] local.INFO: select * from "sessions" where "id" = ? limit 1  
+[2025-02-01 13:33:58] local.INFO: select * from "staff" where "id" = ? limit 1  
+[2025-02-01 13:33:59] local.INFO: update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2025-02-01 13:34:11] local.INFO: select * from "sessions" where "id" = ? limit 1  
+[2025-02-01 13:34:11] local.INFO: select * from "staff" where "id" = ? limit 1  
+[2025-02-01 13:34:12] local.INFO: update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
+[2025-02-01 13:34:19] local.INFO: select * from "sessions" where "id" = ? limit 1  
+[2025-02-01 13:34:20] local.INFO: select * from "staff" where "id" = ? limit 1  
+[2025-02-01 13:34:20] local.INFO: select * from "appointments"  
+[2025-02-01 13:34:21] local.INFO: select * from "staff" where exists (select * from "active_users" where "staff"."id" = "active_users"."staff_id" and "last_activity" >= ?)  
+[2025-02-01 13:34:21] local.INFO: update "sessions" set "payload" = ?, "last_activity" = ?, "user_id" = ?, "ip_address" = ?, "user_agent" = ? where "id" = ?  
