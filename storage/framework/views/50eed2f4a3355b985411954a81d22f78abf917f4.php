@@ -141,8 +141,8 @@
 
     </section> </hr> </br>
 </div>
-        <form action="{{ route('login') }}" method="POST">
-            @csrf
+        <form action="<?php echo e(route('login')); ?>" method="POST">
+            <?php echo csrf_field(); ?>
             <label for="email">Email</label>
             <input type="email" id="email" name="email" placeholder="Your email" required>
 
@@ -184,3 +184,4 @@
     </div>
 </body>
 </html>
+<?php /**PATH C:\Users\sharo\Downloads\Beacon's\BeaconChildrenCenter-1\resources\views/sign_in.blade.php ENDPATH**/ ?>

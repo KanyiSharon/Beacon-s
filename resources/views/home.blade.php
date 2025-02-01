@@ -147,7 +147,6 @@
 @auth
   <p class="welcome-message">Hello, {{ auth()->user()->fullname->first_name }}!</p>
   <div style="text-align: center; margin-top: 30px;">
-    <a href="{{ route(auth()->user()->getDashboardRoute()) }}" class="btn" style="background-color: #007bff; color: #fff;">My Dashboard</a>
   </div>
 @endauth
 
