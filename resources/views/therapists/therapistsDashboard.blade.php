@@ -55,107 +55,90 @@
     }
 
     .close {
-    position: absolute; /* Position it relative to the modal */
-    top: 10px; /* Adjust this value to align properly */
-    right: 10px; /* Adjust this value to align properly */
-    cursor: pointer; /* Change cursor to indicate interactivity */
-    font-size: 18px; /* Size of the close icon */
-    color: #333; /* Default color for the icon */
-    transition: color 0.3s ease, transform 0.3s ease; /* Add hover and interaction effects */
-}
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      color: #333;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
 
-.close:hover {
-    
-    transform: scale(1.2); /* Slightly enlarge the icon on hover */
-}
-
+    .close:hover {
+      transform: scale(1.2);
+    }
 
     .cancel-btn,
-.reschedule-btn {
-    display: none;
-}
+    .reschedule-btn {
+      display: none;
+    }
 
-/* Dropdown Styling */
-.dropdown-content {
-    display: none; /* Initially hidden */
-    position: absolute;
-    background-color: white; /* Background color */
-    color: black !important; /* Text color */
-    min-width: 150px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 12px 16px;
-    z-index: 1000;
-    border-radius: 6px;
-}
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      color: black !important;
+      min-width: 150px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      padding: 12px 16px;
+      z-index: 1000;
+      border-radius: 6px;
+    }
 
-.dropdown-content a {
-    color: black !important; /* Text color */
-    padding: 8px 12px;
-    text-decoration: none;
-    display: block;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    transition: background-color 0.3s ease;
-}
+    .dropdown-content a {
+      color: black !important;
+      padding: 8px 12px;
+      text-decoration: none;
+      display: block;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      transition: background-color 0.3s ease;
+    }
 
-.dropdown-content a:last-child {
-    border-bottom: none;
-}
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
 
-.dropdown-content a:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Hover effect */
-}
+    .dropdown-content a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
 
-/* Show Dropdown on Hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
 
-/* Modal Styling */
-#reschedule-modal {
-    display: none; /* Initially hidden */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1100;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
-    width: 90%;
-}
+    #reschedule-modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1100;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+      max-width: 400px;
+      width: 90%;
+    }
 
-#reschedule-modal .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    color: black;
-}
+    .hidden {
+      display: none;
+    }
 
-.hidden {
-    display: none;
-}
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
 
-/* Overlay for Modal */
-.modal-overlay {
-    display: none; /* Initially hidden */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-}
-
-form {
-  color:black !important;
-}
-
-
+    form {
+      color: black !important;
+    }
   </style>
 </head>
 <body class="bg-gray-100">
@@ -232,57 +215,79 @@ form {
         <div id="calendar" class="section hidden">
           <div class="bg-white rounded-lg shadow p-6">
             <div class="calendar-container"></div>
-
-            @include('calendar', ['doctorSpecializations' => $doctorSpecializations ?? []])
-
-
-
-          <!--
-            <div id="appointments-list" class="mt-6 hidden">
-              <ul id="appointments-for-day" class="space-y-2"></ul>
-            </div>
-
-            !--->
           </div>
         </div>
 
-       <!-- Patients Section -->
-      <section id="patients" class="section hidden">
-        <div class="bg-white rounded-lg shadow p-6">
-          <header>
-            <h3 class="text-xl font-semibold mb-4">Patients Waiting</h3>
-          </header>
-          <table class="min-w-full bg-white border-collapse">
-            <thead>
-              <tr>
-              <th class="py-2 border">Child Name</th>
-              <th class="py-2 border">Registration Number</th>
-                <th class="py-2 border">Visit Date/Time</th>
-              </tr>
-            </thead>
-            <tbody id="patient-table-body">
-              <!-- Data will be dynamically populated -->
-            </tbody>
-          </table>
-          <button
-            id="startConsultationBtn"
-            onclick="startConsultation()"
-            class="mt-6 bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors"
-          >
-            Start Consultation
-          </button>
+        <!-- Patients Section -->
+        <div id="patients" class="section hidden">
+          <div class="bg-white rounded-lg shadow p-6">
+            <header>
+              <h3 class="text-xl font-semibold mb-4">Patients Waiting</h3>
+            </header>
+            <table class="min-w-full bg-white border-collapse">
+              <thead>
+                <tr>
+                  <th class="py-2 border">Child Name</th>
+                  <th class="py-2 border">Registration Number</th>
+                  <th class="py-2 border">Visit Date/Time</th>
+                  <th class="py-2 border">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="patient-table-body">
+                <!-- Data will be dynamically populated -->
+              </tbody>
+            </table>
+            <button
+              id="startConsultationBtn"
+              onclick="startConsultation()"
+              class="mt-6 bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors"
+            >
+              Start Consultation
+            </button>
+          </div>
         </div>
-      </section>
-    </main>
-  </div>
       </main>
     </div>
   </div>
 
-  <script src="{{ asset('js/loader.js') }}"></script>    
+  <!-- Modal Overlay -->
+  <div class="modal-overlay"></div>
+
+  <!-- Reschedule Modal -->
+  <div id="reschedule-modal" class="hidden">
+    <div class="close" onclick="closeModal('reschedule-modal')">&times;</div>
+    <h3 class="text-xl font-semibold mb-4">Reschedule Appointment</h3>
+    <!-- Add modal content here -->
+  </div>
+
   <script>
-    let patientQueue = ['Patient A', 'Patient B', 'Patient C'];
+    // Global variables
+    let selectedPatient = null;
+    let selectedRegistrationNumber = null;
     let sidebarExpanded = true;
+
+    // DOM Content Loaded Event Handler
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize patient list
+      generatePatientList();
+      
+      // Modal event handlers
+      const closeModalButton = document.getElementById('close-modal');
+      const modal = document.getElementById('add-event-wrapper');
+      const modalOverlay = document.querySelector('.modal-overlay');
+
+      if (closeModalButton) {
+        closeModalButton.addEventListener('click', () => {
+          modal.classList.add('hidden');
+          if (modalOverlay) modalOverlay.style.display = 'none';
+        });
+      }
+
+      // Initialize dashboard
+      showSection('dashboard');
+      updateDateTime();
+      setInterval(updateDateTime, 1000);
+    });
 
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
@@ -294,27 +299,6 @@ form {
       mainContent.classList.toggle('collapsed');
     }
 
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll('.section');
-      sections.forEach(section => {
-        section.classList.add('hidden');
-      });
-      document.getElementById(sectionId).classList.remove('hidden');
-
-      if (sectionId === 'calendar') {
-        generateCalendar();
-      } else if (sectionId === 'patients') {
-        generatePatientList();
-      }
-
-      document.getElementById('appointments-list').classList.add('hidden');
-    }
-
-    function updateDateTime() {
-      const now = new Date();
-      currentDate.textContent = now.toLocaleString();
-    }
-    /*
     function generateCalendar() {
       const calendarContainer = document.querySelector('.calendar-container');
       const today = new Date();
@@ -352,233 +336,199 @@ form {
       }
       tableHtml += '</tr></table>';
       calendarContainer.innerHTML = tableHtml;
-    }*/
-
-    function showAppointments(date) {
-      const appointmentsList = document.getElementById('appointments-for-day');
-      appointmentsList.innerHTML = `<li class="p-3 bg-gray-50 rounded">No patients booked for ${date}</li>`;
-      document.getElementById('appointments-list').classList.remove('hidden');
     }
 
-    function generatePatientList() {
-    const patientList = document.querySelector('.patient-list');
-    patientList.innerHTML = '';
-
-    children.forEach(child => {
-        const listItem = document.createElement('li');
-        listItem.className = 'p-4 border rounded hover:bg-gray-50 cursor-pointer transition-colors';
-        listItem.innerHTML = `
-            <div>
-                <p>ID: ${child.id}</p>
-                <p>Full Name: ${child.fullname}</p>
-                <p>Date of Birth: ${child.dob}</p>
-                <p>Birth Certificate: ${child.birth_cert}</p>
-                <p>Gender ID: ${child.gender_id}</p>
-                <p>Registration Number: ${child.registration_number}</p>
-                <p>Created At: ${child.created_at}</p>
-                <p>Updated At: ${child.updated_at}</p>
-            </div>
-        `;
-        patientList.appendChild(listItem);
-    });
-}
-
-    function selectPatient(index) {
-      const patientListItems = document.querySelectorAll('.patient-list li');
-      patientListItems.forEach(item => item.classList.remove('bg-blue-50', 'border-l-4', 'border-blue-500'));
-      patientListItems[index].classList.add('bg-blue-50', 'border-l-4', 'border-blue-500');
-    }
-    let selectedRegistrationNumber = null
-
-function selectRegistrationNumber(registrationNumber, childId) {
-  selectedRegistrationNumber = registrationNumber; // Store selected registration number
-  alert(`Selected Registration Number: ${registrationNumber}, Child ID: ${childId}`);
-  
-  
-  
-  // Further actions can be added here, e.g., saving to a variable or performing an API request
-}
-
-async function startConsultation() {
-
-
-  
-    if (!selectedRegistrationNumber) {
-        alert('Please select a patient first.');
-        return;
-    }
-    showLoadingIndicator();
-    try {
-       // Update loading progress
-       updateLoadingProgress(20, 'Checking patient data...');
-        // First make an AJAX call to check if the patient exists and get initial data
-        const response = await fetch(`http://127.0.0.1:8000/occupationaltherapy_dashboard/${selectedRegistrationNumber}`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'  // Marks this as an AJAX request
-            }
-        });
-         // Update loading progress
-         updateLoadingProgress(50, 'Fetching data from server...');
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-         // Update loading progress
-         updateLoadingProgress(80, 'Processing data...');
-        
-        // If we successfully got the data, redirect to the dashboard page
-        window.location.href = `/occupationaltherapy_dashboard/${selectedRegistrationNumber}`;
-
-    } catch (error) {
-        console.error('Error starting consultation:', error);
-        let errorMessage = 'Error starting consultation. ';
-        
-        if (error.message.includes('404')) {
-            errorMessage += 'Patient not found.';
-        } else if (error.message.includes('403')) {
-            errorMessage += 'Access denied.';
-        } else {
-            errorMessage += 'Please try again or contact support.';
-        }
-        
-        alert(errorMessage);
-    }
-} 
-    showSection('dashboard');
-    hideLoadingIndicator();
-    
-    const currentDate = document.getElementById('current-date');
-    updateDateTime();
-    setInterval(updateDateTime, 1000);
-  </script>
-  <script>
-    function showAppointments(date) {
-        const appointmentsList = document.getElementById('appointments-for-day');
-        appointmentsList.innerHTML = `<li class="p-3 bg-gray-50 rounded">No patients booked for ${date}</li>`;
-        document.getElementById('appointments-list').classList.remove('hidden');
-    }
-
-    function showSection(sectionId) {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(section => {
-            section.classList.add('hidden');
-        });
-        document.getElementById(sectionId).classList.remove('hidden');
-
-        if (sectionId === 'calendar') {
-            generateCalendar();
-        } else if (sectionId === 'patients') {
-            generatePatientList();
-        }
-
-        document.getElementById('appointments-list').classList.add('hidden');
-    }
-
-    showSection('dashboard');
-</script>
-<!-- <script>
     function generatePatientList() {
       const patientTableBody = document.getElementById("patient-table-body");
+      if (!patientTableBody) return;
+      
       patientTableBody.innerHTML = ""; // Clear existing rows
 
-      // Assuming visits is an array of patient visit objects passed from backend
+      // This should be replaced with actual data when integrating with Laravel
+      // For now, using a placeholder array
       const visits = @json($visits); // Use Laravel's Blade directive to pass data
 
+      console.log(visits); // Log visits data to verify
+
       visits.forEach((visit) => {
-        const fullname = JSON.parse(visit.fullname);
-        const fullNameString = fullname
-          ? `${fullname.first_name} ${fullname.middle_name || ""} ${fullname.last_name}`
-          : visit.fullname;
+        let fullNameString = '';
+        try {
+          const fullname = JSON.parse(visit.fullname);
+          fullNameString = fullname
+            ? `${fullname.first_name} ${fullname.middle_name || ""} ${fullname.last_name}`
+            : visit.fullname;
+        } catch (e) {
+          fullNameString = visit.fullname; // Fallback if parsing fails
+        }
 
         const row = document.createElement("tr");
         row.innerHTML = `
-          <td class="py-2 border">${visit.created_at}</td>
-          <td class="py-2 border">${visit.registration_number}</td>
           <td class="py-2 border">${fullNameString}</td>
+          <td class="py-2 border">${visit.registration_number}</td>
+          <td class="py-2 border">${visit.created_at}</td>
+          <td class="py-2 border">
+            <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" 
+              onclick="selectRegistrationNumber('${visit.registration_number}', '${visit.child_id}')">
+              Select
+            </button>
+          </td>
         `;
         patientTableBody.appendChild(row);
       });
     }
 
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll(".section");
-      sections.forEach((section) => section.classList.add("hidden"));
-      document.getElementById(sectionId).classList.remove("hidden");
+    function selectRegistrationNumber(registrationNumber, childId) {
+      selectedRegistrationNumber = registrationNumber;
+      console.log(`Selected Registration Number: ${registrationNumber}, Child ID: ${childId}`);
+      highlightSelectedRow(registrationNumber);
+    }
 
-      if (sectionId === "patients") {
-        generatePatientList(); // Call this when "Patients" section is shown
+    function highlightSelectedRow(registrationNumber) {
+      const patientTableBody = document.getElementById("patient-table-body");
+      const rows = patientTableBody.querySelectorAll("tr");      rows.forEach(row => {
+        row.classList.remove("bg-blue-50", "border-l-4", "border-blue-500");
+        if (row.children[1].textContent === registrationNumber) {
+          row.classList.add("bg-blue-50", "border-l-4", "border-blue-500");
+        }
+      });
+    }
+
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(section => {
+        section.classList.add('hidden');
+      });
+      document.getElementById(sectionId).classList.remove('hidden');
+
+      if (sectionId === 'calendar') {
+        generateCalendar();
+      } else if (sectionId === 'patients') {
+        generatePatientList();
+      }
+
+      if (document.getElementById('appointments-list')) {
+        document.getElementById('appointments-list').classList.add('hidden');
       }
     }
 
-   
-  </script> -->
-<script>
-  let selectedPatient = null;
+    function showAppointments(date) {
+      const appointmentsList = document.getElementById('appointments-for-day');
+      if (appointmentsList) {
+        appointmentsList.innerHTML = `<li class="p-3 bg-gray-50 rounded">No patients booked for ${date}</li>`;
+        document.getElementById('appointments-list').classList.remove('hidden');
+      }
+    }
 
-  function generatePatientList() {
-  const patientTableBody = document.getElementById("patient-table-body");
-  patientTableBody.innerHTML = ""; // Clear existing rows
+    function updateDateTime() {
+      const currentDate = document.getElementById('current-date');
+      if (currentDate) {
+        const now = new Date();
+        currentDate.textContent = now.toLocaleString();
+      }
+    }
 
-  // Assuming visits is an array of patient visit objects passed from backend
-  const visits = @json($visits); // Use Laravel's Blade directive to pass data
+    async function startConsultation() {
+      if (!selectedRegistrationNumber) {
+        alert('Please select a patient first.');
+        return;
+      }
 
-  visits.forEach((visit) => {
-    const fullname = JSON.parse(visit.fullname);
-    const fullNameString = fullname
-      ? `${fullname.first_name} ${fullname.middle_name || ""} ${fullname.last_name}`
-      : visit.fullname;
+      showLoadingIndicator();
+      try {
+        // Update loading progress
+        updateLoadingProgress(20, 'Checking patient data...');
+        
+        // First make an AJAX call to check if the patient exists and get initial data
+        const response = await fetch(`/occupationaltherapy_dashboard/${selectedRegistrationNumber}`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          }
+        });
 
-    const row = document.createElement("tr");
-    row.innerHTML = `
-        <td class="py-2 border">${fullNameString}</td>
-        <td class="py-2 border">${visit.registration_number}</td>
-      <td class="py-2 border">${visit.created_at}</td>
-      <td class="py-2 border">
-       <button class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" 
-        onclick="selectRegistrationNumber('${visit.registration_number}', '${visit.child_id}')">
-  Select
-</button>
+        // Update loading progress
+        updateLoadingProgress(50, 'Fetching data from server...');
 
-      </td>
-    `;
-    patientTableBody.appendChild(row);
-  });
-}
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
+        const data = await response.json();
+        
+        // Update loading progress
+        updateLoadingProgress(80, 'Processing data...');
+        
+        // If we successfully got the data, redirect to the dashboard page
+        window.location.href = `/occupationaltherapy_dashboard/${selectedRegistrationNumber}`;
 
+      } catch (error) {
+        console.error('Error starting consultation:', error);
+        let errorMessage = 'Error starting consultation. ';
+        
+        if (error.message.includes('404')) {
+          errorMessage += 'Patient not found.';
+        } else if (error.message.includes('403')) {
+          errorMessage += 'Access denied.';
+        } else {
+          errorMessage += 'Please try again or contact support.';
+        }
+        
+        alert(errorMessage);
+      } finally {
+        hideLoadingIndicator();
+      }
+    }
 
-  function selectPatient(patient) {
-    selectedPatient = patient;
-    const patientTableBody = document.getElementById("patient-table-body");
-    const rows = patientTableBody.querySelectorAll("tr");
-    rows.forEach(row => row.classList.remove("bg-blue-50", "border-l-4", "border-blue-500"));
-    event.currentTarget.classList.add("bg-blue-50", "border-l-4", "border-blue-500");
-  }
+    // Loading indicator functions
+    function showLoadingIndicator() {
+      const loader = document.createElement('div');
+      loader.id = 'loading-indicator';
+      loader.className = 'fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50';
+      loader.innerHTML = `
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+          <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+          <div id="loading-text" class="mt-4 text-center text-white">Loading...</div>
+          <div id="loading-progress" class="mt-2 w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(loader);
+    }
 
- 
+    function hideLoadingIndicator() {
+      const loader = document.getElementById('loading-indicator');
+      if (loader) {
+        loader.remove();
+      }
+    }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    generatePatientList();
-  });
+    function updateLoadingProgress(percentage, message) {
+      const progressBar = document.querySelector('#loading-progress > div');
+      const loadingText = document.getElementById('loading-text');
+      if (progressBar) {
+        progressBar.style.width = `${percentage}%`;
+      }
+      if (loadingText && message) {
+        loadingText.textContent = message;
+      }
+    }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const closeModalButton = document.getElementById('close-modal');
-    const modal = document.getElementById('add-event-wrapper');
-    const modalOverlay = document.querySelector('.modal-overlay');
-
-    const hideModal = () => {
+    // Modal functions
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      const modalOverlay = document.querySelector('.modal-overlay');
+      if (modal) {
         modal.classList.add('hidden');
-        if (modalOverlay) modalOverlay.style.display = 'none';
-    };
+      }
+      if (modalOverlay) {
+        modalOverlay.style.display = 'none';
+      }
+    }
 
-    closeModalButton.addEventListener('click', hideModal);
-});
-
-</script>
+    // Initialize the dashboard
+    showSection('dashboard');
+  </script>
 </body>
 </html>
-
